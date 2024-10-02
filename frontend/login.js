@@ -2,33 +2,26 @@ const express = require("express");
 const path = require('path');
 const mysql = require("mysql");
 const dotenv = require("dotenv");
-
 dotenv.config({path: './.env'});
-
 const app = express();
-app.get("/", (req, res) => {
-    //res.send("<h1> Login form page") // res is used to send data to the frontend of an application
-    res.render("index");
-});
 
-// route for registration page
-app.get("/register", (req, res) => {
-    res.render("register");
-});
+// Define Routes
+app.use('/', require('./routes/pages'));
+app.use('/auth', require('./routes/auth'));
 
-/*
-importing mysql
-*/
-
+//importing mysql
 const db = mysql.createConnection({
     host: process.env.DATABASE_HOST, // server, since its running locally so local host
     user: process.env.DATABASE_USER,
     password: process.env.DATABASE_PASSWORD,
     database: process.env.DATABASE   
 });
-
 const publicDirectory = path.join(__dirname, './public') // this directory includes all css, js files
 app.use(express.static(publicDirectory));
+
+// Parse URL-encoded bodies (as sent by HTML forms)
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 app.set("view engine", 'hbs'); // setting the html
 
