@@ -11,8 +11,8 @@ app.get("/", (req, res) => {
     res.render("index");
 });
 
+// route for registration page
 app.get("/register", (req, res) => {
-    //res.send("<h1> Login form page") // res is used to send data to the frontend of an application
     res.render("register");
 });
 
