@@ -8,8 +8,6 @@ const app = express();
 // Define Routes
 app.use('/', require('./routes/pages'));
 
-
-
 //importing mysql
 const db = mysql.createConnection({
     host: process.env.DATABASE_HOST, // server, since its running locally so local host
