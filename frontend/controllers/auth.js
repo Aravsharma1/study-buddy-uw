@@ -48,3 +48,44 @@ exports.register = (req,res) => {
         })
     });
 };
+
+
+// Login function
+exports.login = (req, res) => {
+    const { email, password } = req.body;
+
+    // Check if email and password are provided
+    // if (!email || !password) {
+    //     return res.status(400).render('login', {
+    //         message: 'Please provide an email and password'
+    //     });
+    // }
+
+    // Query the database to find the user by email
+    db.query('SELECT * FROM users WHERE email_id = ?', [email], async (error, results) => {
+        if (error) {
+            console.log(error);
+        }
+
+        // Check if user exists
+        if (results.length === 0) {
+            return res.render('login', {
+                message: 'Email or password is incorrect'
+            });
+        }
+
+        // Compare provided password with hashed password from the database
+        const isMatch = await bcrypt.compare(password, results[0].password);
+
+        if (!isMatch) {
+            return res.render('login', {
+                message: 'Email or password is incorrect'
+            });
+        }
+
+        // If login is successful, redirect to YouTube
+        return res.redirect('https://www.reddit.com/r/MemeRestoration/comments/e997wa/can_anyone_find_the_two_black_homies_kissing_meme/');
+    });
+};
+
+
