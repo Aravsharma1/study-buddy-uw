@@ -55,11 +55,11 @@ exports.login = (req, res) => {
     const { email, password } = req.body;
 
     // Check if email and password are provided
-    // if (!email || !password) {
-    //     return res.status(400).render('login', {
-    //         message: 'Please provide an email and password'
-    //     });
-    // }
+    if (!email || !password) {
+        return res.status(400).render('login', {
+            message: 'Please provide an email and password'
+        });
+    }
 
     // Query the database to find the user by email
     db.query('SELECT * FROM users WHERE email_id = ?', [email], async (error, results) => {
