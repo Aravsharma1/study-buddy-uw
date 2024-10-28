@@ -1,11 +1,38 @@
-// File: src/CreateStudyGroup.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function CreateStudyGroup({ onSubmit }) {
   const [numStudents, setNumStudents] = useState('');
   const [location, setLocation] = useState('');
   const [meetingTimes, setMeetingTimes] = useState('');
   const [course, setCourse] = useState('');
+  const [courses, setCourses] = useState([]); // State to hold courses
+
+  useEffect(() => {
+    const fetchCourses = async () => {
+      const apiKey = 'B294D887D5CE4FBB9A808C2CE9E7BDDB';
+      const termCode = '1211'; // Winter 2021 term code
+      const url = `https://openapi.data.uwaterloo.ca/v3/Courses/${termCode}`;
+
+      try {
+        const response = await fetch(url, {
+          headers: {
+            'X-API-KEY': apiKey,
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const coursesData = await response.json();
+        setCourses(coursesData); // Set courses in state
+      } catch (error) {
+        console.error('Error fetching courses:', error);
+      }
+    };
+
+    fetchCourses();
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -51,12 +78,22 @@ function CreateStudyGroup({ onSubmit }) {
 
       <div>
         <label>Course:</label>
-        <input
-          type="text"
+        <select
           value={course}
           onChange={(e) => setCourse(e.target.value)}
           required
-        />
+        >
+          <option value="">Select a course</option>
+          {courses.length > 0 ? (
+            courses.map((c) => (
+              <option key={c.courseId} value={c.catalogNumber}>
+                {c.subjectCode} {c.catalogNumber}
+              </option>
+            ))
+          ) : (
+            <option disabled>No courses available</option>
+          )}
+        </select>
       </div>
 
       <button type="submit">Create Study Group</button>
