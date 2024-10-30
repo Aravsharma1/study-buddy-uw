@@ -11,5 +11,10 @@ Study Buddy Matching: Allows students to find peers based on shared courses, mak
 User-Friendly Interface: Designed with a clean and intuitive interface to streamline the process of finding a study buddy.
 Real-Time Updates: Ensures that users have access to the most current course information and availability.
 
+Here is our progress so far:-
 
 ![Alt text](home.png)
+
+
+
+![courses](course.png)
