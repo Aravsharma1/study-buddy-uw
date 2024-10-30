@@ -10,3 +10,6 @@ Course Information: Fetches real-time data about courses offered at the Universi
 Study Buddy Matching: Allows students to find peers based on shared courses, making it easier to form study groups.
 User-Friendly Interface: Designed with a clean and intuitive interface to streamline the process of finding a study buddy.
 Real-Time Updates: Ensures that users have access to the most current course information and availability.
+
+
+![Alt text](home.png)
