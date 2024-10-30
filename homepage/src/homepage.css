@@ -1,0 +1,70 @@
+/* File: src/homepage.css */
+
+/* Navbar styling */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #282c34;
+    color: white;
+  }
+  
+  .navbar h1 {
+    margin: 0;
+  }
+  
+  .navbar-links button {
+    margin-left: 10px;
+    padding: 10px;
+    background-color: #61dafb;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .navbar-links button:hover {
+    background-color: #21a1f1;
+  }
+  
+  /* Form styling */
+  .create-study-group-form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin: 20px auto;
+  }
+  
+  .create-study-group-form div {
+    margin-bottom: 15px;
+  }
+  
+  .create-study-group-form label {
+    margin-right: 10px;
+  }
+  
+  .create-study-group-form input {
+    padding: 5px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .create-study-group-form button {
+    padding: 10px;
+    background-color: #61dafb;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .create-study-group-form button:hover {
+    background-color: #21a1f1;
+  }
+  
+  /* Main app styling */
+  .App {
+    text-align: center;
+  }
+  
+  h2 {
+    margin: 20px 0;
+  }
+  

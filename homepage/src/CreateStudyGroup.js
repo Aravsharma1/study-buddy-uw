@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 function CreateStudyGroup({ onSubmit }) {
+  const [studyGroupid, setStudyGroupID] = useState('');
   const [numStudents, setNumStudents] = useState('');
   const [location, setLocation] = useState('');
   const [meetingTimes, setMeetingTimes] = useState('');
@@ -36,8 +37,9 @@ function CreateStudyGroup({ onSubmit }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({ numStudents, location, meetingTimes, course });
+    onSubmit({ studyGroupid, numStudents, location, meetingTimes, course });
     // Clear form after submission
+    studyGroupid('');
     setNumStudents('');
     setLocation('');
     setMeetingTimes('');
@@ -46,6 +48,15 @@ function CreateStudyGroup({ onSubmit }) {
 
   return (
     <form onSubmit={handleSubmit} className="create-study-group-form">
+      <div>
+      <label>Enter a Study Group ID:</label>
+        <input
+          type="number"
+          value={studyGroupid}
+          onChange={(e) => setStudyGroupID(e.target.value)}
+          required
+        />
+      </div>
       <div>
         <label>Number of Students:</label>
         <input
