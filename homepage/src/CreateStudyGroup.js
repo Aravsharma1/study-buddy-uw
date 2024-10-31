@@ -7,6 +7,7 @@ function CreateStudyGroup({ onSubmit }) {
   const [meetingTimes, setMeetingTimes] = useState('');
   const [course, setCourse] = useState('');
   const [courses, setCourses] = useState([]); // State to hold courses
+  const [bldg, setBldg] = useState([]); // State to hold building names
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -35,11 +36,37 @@ function CreateStudyGroup({ onSubmit }) {
     fetchCourses();
   }, []);
 
+  useEffect(() => {
+    const fetchBldg = async () => {
+      const apiKey = 'B294D887D5CE4FBB9A808C2CE9E7BDDB';
+      const url = `https://openapi.data.uwaterloo.ca/v3/Locations`;
+
+      try {
+        const response = await fetch(url, {
+          headers: {
+            'X-API-KEY': apiKey,
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const bldgData = await response.json();
+        setBldg(bldgData); // Set building names in state
+      } catch (error) {
+        console.error('Error fetching building names:', error);
+      }
+    };
+
+    fetchBldg();
+  }, []); // Fetch buildings on component mount
+
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit({ studyGroupid, numStudents, location, meetingTimes, course });
     // Clear form after submission
-    studyGroupid('');
+    setStudyGroupID(''); // Corrected state reset
     setNumStudents('');
     setLocation('');
     setMeetingTimes('');
@@ -49,7 +76,7 @@ function CreateStudyGroup({ onSubmit }) {
   return (
     <form onSubmit={handleSubmit} className="create-study-group-form">
       <div>
-      <label>Enter a Study Group ID:</label>
+        <label>Enter a Study Group ID:</label>
         <input
           type="number"
           value={studyGroupid}
@@ -69,12 +96,22 @@ function CreateStudyGroup({ onSubmit }) {
 
       <div>
         <label>Location:</label>
-        <input
-          type="text"
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
+        <select
+          value={location} // Correctly set to location state
+          onChange={(e) => setLocation(e.target.value)} // Set location on change
           required
-        />
+        >
+          <option value="">Select a building</option>
+          {bldg.length > 0 ? (
+            bldg.map((b) => (
+              <option key={b.buildingId} value={b.buildingName}>
+                {b.buildingName}
+              </option>
+            ))
+          ) : (
+            <option disabled>No buildings available</option>
+          )}
+        </select>
       </div>
 
       <div>
