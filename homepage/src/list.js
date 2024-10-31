@@ -1,7 +1,8 @@
 const https = require('https');
+const dotenv = require("dotenv");
+dotenv.config({path: './.env'});
 
-
-const apiKey = 'B294D887D5CE4FBB9A808C2CE9E7BDDB';
+const apiKey = process.env.waterlooapikey;
 const termCode = '1211'; // Replace with the term code you want (e.g., '1211' for Winter 2021)
 
 const url = `https://openapi.data.uwaterloo.ca/v3/Locations`;
