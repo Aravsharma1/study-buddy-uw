@@ -16,7 +16,7 @@ function CreateStudyGroup({ onSubmit }) {
       const url = `https://openapi.data.uwaterloo.ca/v3/Courses/${termCode}`;
       const url2 = `https://openapi.data.uwaterloo.ca/v3/Courses/${termCode}`;
 
-      try {
+      tr {
         const response = await fetch(url, {
           headers: {
             'X-API-KEY': apiKey,
