@@ -1,4 +1,4 @@
-Study Buddy - University of Waterlo
+Study Buddy - University of Waterloo
 
 Overview
 
