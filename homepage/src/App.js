@@ -19,9 +19,7 @@ export default function App() {
     console.log('New Study Group:', groupData);
     setIsCreatingGroup(false);  // Hide form after submission
   };
-  const WelcomeMessage = () => {
-    return <p>Welcome, user!</p>;
-  };
+ 
 
   return (
     <div className="App">
