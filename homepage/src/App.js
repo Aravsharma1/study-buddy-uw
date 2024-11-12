@@ -11,18 +11,7 @@ export default function App() {
     setIsCreatingGroup(true);  // Show the form to create a study group
   };
 
-  const handleViewClick = () => {
-    setIsCreatingGroup(false);  // Hide the form, show view study groups content
-  };
-
-  const handleFormSubmit = (groupData) => {
-    console.log('New Study Group:', groupData);
-    setIsCreatingGroup(false);  // Hide form after submission
-  };
-  const WelcomeMessage = () => {
-    return <p>Welcome, user!</p>;
-  };
-
+  
   return (
     <div className="App">
       <Navbar onCreateClick={handleCreateClick} onViewClick={handleViewClick} />
