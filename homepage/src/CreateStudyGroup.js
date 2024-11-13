@@ -10,7 +10,7 @@ function CreateStudyGroup({ onSubmit }) {
   const [bldg, setBldg] = useState([]); // State to hold building names
 
   useEffect(() => {
-    const fetchCourses = async () => {
+    cons fetchCourses = async () => {
       const apiKey = 'B294D887D5CE4FBB9A808C2CE9E7BDDB';
       const termCode = '1211'; // Winter 2021 term code
       const url = `https://openapi.data.uwaterloo.ca/v3/Courses/${termCode}`;
