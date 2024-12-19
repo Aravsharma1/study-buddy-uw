@@ -11,10 +11,11 @@ function CreateStudyGroup({ onSubmit }) {
 
   useEffect(() => {
     const fetchCourses = async () => {
-      const apiKey = 'B294D887D5CE4FBB9A808C2CE9E7BDDB';
+      //const apiKey2 = 'B294D887D5CE4FBB9A808C2CE9E7BDDB';
+      const apiKey = process.env.waterlooapikey;
       const termCode = '1211'; // Winter 2021 term code
       const url = `https://openapi.data.uwaterloo.ca/v3/Courses/${termCode}`;
-      const url2 = `https://openapi.data.uwaterloo.ca/v3/Courses/${termCode}`;
+      //const url2 = `https://openapi.data.uwaterloo.ca/v3/Courses/${termCode}`;
 
       try {
         const response = await fetch(url, {
@@ -39,7 +40,7 @@ function CreateStudyGroup({ onSubmit }) {
 
   useEffect(() => {
     const fetchBldg = async () => {
-      const apiKey = 'B294D887D5CE4FBB9A808C2CE9E7BDDB';
+      const apiKey = process.env.waterlooapikey;
       const url = `https://openapi.data.uwaterloo.ca/v3/Locations`;
 
       try {
